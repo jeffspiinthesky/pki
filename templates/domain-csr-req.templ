@@ -1,0 +1,31 @@
+# the fully qualified server (or service) name
+FQDN = ${DOMAIN}
+
+# the name of your organization
+# (see also https://www.switch.ch/pki/participants/)
+ORGNAME = ${ORGANISATION}
+
+# subjectAltName entries: to add DNS aliases to the CSR, delete
+# the '#' character in the ALTNAMES line, and change the subsequent
+# 'DNS:' entries accordingly. Please note: all DNS names must
+# resolve to the same IP address as the FQDN.
+ALTNAMES = DNS:$FQDN   # , DNS:bar.example.org , DNS:www.foo.example.org
+
+# --- no modifications required below ---
+[ req ]
+default_bits = 2048
+default_md = sha256
+prompt = no
+encrypt_key = no
+distinguished_name = dn
+req_extensions = req_ext
+output_password = ${PASSWORD}
+
+[ dn ]
+C = ${COUNTRY}
+O = ${ORGANISATION}
+CN = ${DOMAIN}
+
+[ req_ext ]
+subjectAltName = $ALTNAMES
+

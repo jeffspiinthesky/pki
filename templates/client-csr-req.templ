@@ -1,0 +1,24 @@
+[ req ]
+ default_bits           = 4096
+ default_keyfile        = ${SHORT_ORG}.pem
+ distinguished_name     = ${SHORT_ORG}
+ attributes             = req_attributes
+ prompt                 = no
+ output_password        = ${PASSWORD}
+ input_password         = ${PASSWORD}
+ dirstring_type = nobmp
+
+ [ jpits ]
+ C                      = ${COUNTRY}
+ ST                     = ${STATE}
+ L                      = ${CITY}
+ O                      = ${ORGANISATION}
+ OU                     = ${OU}
+ CN                     = ${NAME}
+ emailAddress           = ${EMAIL}
+
+ [ req_attributes ]
+ challengePassword	= ${PASSWORD}
+
+ [ extensions ]
+ extendedKeyUsage 	= serverAuth, clientAuth

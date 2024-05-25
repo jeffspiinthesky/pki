@@ -1,0 +1,29 @@
+[ req ]
+ default_bits           = 2048
+ default_keyfile        = ${SHORT_ORG}_ca.pem
+ distinguished_name     = ${SHORT_ORG}_ca
+ attributes             = req_attributes
+ req_extensions         = v3_ca
+ prompt                 = no
+ output_password        = ${PASSWORD}
+ dirstring_type = nobmp
+
+ [ jpits_ca ]
+ C                      = ${COUNTRY}
+ ST                     = ${STATE}
+ L                      = ${CITY}
+ O                      = ${ORGANISATION}
+ OU                     = ${OU}
+ CN                     = ${SHORT_ORG}_ca
+ emailAddress           = ${EMAIL}
+
+ [ req_attributes ]
+ challengePassword              = ${PASSWORD}
+ challengePassword_min          = 4
+ challengePassword_max          = 20
+
+ [ v3_ca ]
+
+ subjectKeyIdentifier=hash
+ authorityKeyIdentifier=keyid:always,issuer:always
+ basicConstraints = critical, CA:true
